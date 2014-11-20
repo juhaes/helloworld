@@ -6,6 +6,7 @@
 package helloworld;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,35 +26,9 @@ public class Helloworld extends Application {
         
         // Root is the main layout
         VBox root = new VBox();
-
-        // Text fields
-        Label nameLabel = new Label("Name:");
-        TextField nameField = new TextField();
-        Label addressLabel = new Label("Address:");
-        TextField addressField = new TextField();
-        Label phoneLabel = new Label("Phone number:");
-        TextField phoneField = new TextField();
         
-        // Text field component layout
-        VBox textFieldLayout = new VBox();
-        textFieldLayout.setStyle("-fx-padding:10px; -fx-spacing:7px");
-        textFieldLayout.getChildren().add(nameLabel);
-        textFieldLayout.getChildren().add(nameField);
-        textFieldLayout.getChildren().add(addressLabel);
-        textFieldLayout.getChildren().add(addressField);
-        textFieldLayout.getChildren().add(phoneLabel);
-        textFieldLayout.getChildren().add(phoneField);
-
-        // Buttons
-        Button saveButton = new Button("Save");
-        Button closeButton = new Button("Cancel");
-        HBox buttonLayout = new HBox();
-        buttonLayout.setStyle("-fx-padding:10px; -fx-spacing:10px;");
-        buttonLayout.getChildren().add(saveButton);
-        buttonLayout.getChildren().add(closeButton);
-        
-        root.getChildren().add(textFieldLayout);
-        root.getChildren().add(buttonLayout);
+        root.getChildren().add(new TextFieldsPartial());  // Create new class and add it to layout
+        root.getChildren().add(new ButtonsPartial());
         Scene scene = new Scene(root, 300, 250);
         
         primaryStage.setTitle("Idea");
