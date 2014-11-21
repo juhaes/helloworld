@@ -15,15 +15,19 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author Opiframe
+ * @author juhaes
  */
 public class ButtonsPartial extends HBox implements EventHandler<ActionEvent> {
 
         // Buttons
-        Button saveButton = new Button("Save");
-        Button closeButton = new Button("Cancel");
-    
-    public ButtonsPartial() {
+        private final Button saveButton = new Button("Save");
+        private final Button closeButton = new Button("Cancel");
+        private TextFieldsPartial partial;
+        
+    public ButtonsPartial(TextFieldsPartial partial) {
+        
+        this.partial = partial;
+        
         VBox.setMargin(this, new Insets(5,5,5,5));           // Margins affecting this layout inside the root
         this.setStyle("-fx-padding:10px; -fx-spacing:7px");  // Margins between the fields
         this.getChildren().add(saveButton);
@@ -41,10 +45,14 @@ public class ButtonsPartial extends HBox implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent t) {
-        if (t.getSource().equals(saveButton))
-            System.out.println("Saving....");
-        else
+        if (t.getSource().equals(saveButton)) {
+            UserInfo temp = partial.getUserInfo();
+            ListNamesPartial.userInfo.add(temp);
+            partial.clearFields();
+        }
+        if (t.getSource().equals(closeButton)) {
             Platform.exit();
+        }
     }
 
 }
